@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>MinimalBlog</title>
+	<meta name="author" content="name">
+	<meta name="description" content="description here">
+	<meta name="keywords" content="keywords,here">
+	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+	<!--Replace with your tailwind.css once created-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/site.webmanifest">
+	<style>
+		.smooth {
+			transition: box-shadow 0.3s ease-in-out;
+		}
+
+		::selection {
+			background-color: aliceblue
+		}
+
+		code {
+			background-color: #eee;
+			display: inline-block;
+			font-size: 20px;
+		}
+
+		fff {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		h1 {
+			font-weight: bold !important;
+			font-size: 30px;
+			padding-top: 30px;	
+		}
+
+		h2 {
+			font-weight: bold !important;
+			font-size: 25px;
+			padding: 15px 0px 0px 2px;
+		}
+
+		.ctent p {
+			padding-top: 10px;
+
+		}
+		.ctent ul{
+			list-style-type: disc;
+			padding-left: 50px;
+			padding-top: 15px;
+			font-size:20px;
+		}
+		.ctent a{
+			text-decoration: underline;
+			color: #005e99;
+		}
+		img{
+		display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0 10px 0;
+		}
+	</style>
+</head>
+
+<body class="bg-white leading-normal tracking-normal">
+
+	<!--Nav-->
+	<nav class="bg-black p-4 mt-0 w-full">
+		<div class="container mx-auto flex items-center">
+			<div class="flex text-white font-extrabold">
+				<a class="flex text-white text-base no-underline hover:text-white hover:no-underline" href="/index.html">
+					👻 <span class="hidden w-0 md:w-auto md:block pl-1">Minimal Blog</span>
+				</a>
+			</div>
+			<div class="flex pl-4 text-sm">
+				<ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+					<li class="mr-2">
+						<a class="inline-block py-2 px-2 text-white no-underline" href="index.html">HOME</a>
+					</li>
+					<li class="mr-2">
+						<a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-2"
+							href="#">LINK</a>
+					</li>
+					<li class="mr-2">
+						<a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-2"
+							href="#">LINK</a>
+					</li>
+					<li class="mr-2">
+						<a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-2"
+							href="#">LINK</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!--slide in nav-->
+	<div id="header" class="bg-white fixed w-full z-10 top-0 hidden animated" style="opacity: .95;">
+		<div class="bg-white">
+			<div class="flex flex-wrap items-center content-center">
+				<div class="flex w-1/2 justify-start text-white font-extrabold">
+					<a class="flex text-gray-900 no-underline hover:text-gray-900 hover:no-underline pl-2" href="#">
+						👻 <span class="hidden w-0 md:w-auto md:block pl-1">Minimal Blog</span>
+					</a>
+				</div>
+				<div class="flex w-1/2 justify-end content-center">
+					<!-- <p class="hidden sm:block mr-3 text-center h-14 p-4 text-xs"><span class="pr-2">Share this</span> 👉
+					</p>
+					<a class="inline-block text-white no-underline hover:text-white hover:text-underline text-center h-10 w-10 p-2 md:h-auto md:w-16 md:p-4"
+						href="https://twitter.com/intent/tweet?url=#" style="background-color:#33b1ff;">
+						<svg class="fill-current text-white h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+							<path
+								d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z">
+							</path>
+						</svg>
+					</a>
+					<a class="inline-block text-white no-underline hover:text-white hover:text-underline text-center h-10 w-10 p-2 md:h-auto md:w-16 md:p-4"
+						href="https://www.facebook.com/sharer/sharer.php?u=#" style="background-color:#005e99">
+						<svg class="fill-current text-white h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+							<path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z">
+							</path>
+						</svg> -->
+					</a>
+				</div>
+			</div>
+
+		</div>
+		<!--Progress bar-->
+		<div id="progress" class="h-1 bg-white shadow"
+			style="background:linear-gradient(to right, #4dc0b5 var(--scroll), transparent 0);"></div>
+	</div>
+
+
+	<!--Title-->
+	<div class="text-center pt-10 ">
+		<p class="text-sm md:text-base text-green-500 font-bold">20 SEPTEMBER 2022 <span class="text-green-500">/</span>
+			<a href=""></a>
+			TECHNOLOGY</p>
+		<h1 class="font-bold break-normal text-3xl md:text-5xl" style="color: aliceblue">Git: Tổng quan về git</h1>
+	</div>
+
+	<!--image-->
+	<div class="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded" 
+		style="background-image:url('/img/1619644762_github-desktop_story.jpg'); height: 100vh; max-width: 100%; margin-top: -9rem"></div>
+
+	<!--Container-->
+	<div class="container max-w-5xl mx-auto">
+
+		<div class="mx-0 sm:mx-6">
+
+			<div class="bg-white w-full p-8 md:p-10 text-xl md:text-xl text-gray-800 leading-normal">
+
+				<!--Post Content-->
+
+
+				<!--Lead Para-->
+				<div class="ctent">
+					<div class="fff">
+						<h1>I. Lời mở đầu:</h1>
+						<p>Ở bài viết này mình sẽ giới thiệu về git, một công cụ hữu ích mà bất
+							kể bạn dev nào cùng cần biết và sử dụng để quản lý mã nguồn</p>
+						<p>Vậy git là gì? Git hoạt động như thế nào? Git có lợi ít gì? Làm như
+							thế nào để sử dụng git? Thì bạn đọc tiếp ở phần bên dưới nhé</p>
+						<h1>II. Giới thiệu về git:</h1>
+						<h2>1. Git là gì?</h2>
+						<p><code>Git</code> là một hệ thống quản lý phiên bản phân tán
+							(<code>Distributed Version Control System</code> – DVCS), nó là một
+							trong những hệ thống quản lý phiên bản phân tán phổ biến nhất hiện
+							nay. <code>Git</code> cung cấp cho mỗi lập trình viên kho lưu trữ
+							(<code>repository</code>) riêng chứa toàn bộ lịch sử thay đổi.</p>
+						<h2>2. Version Control System – VCS là gì?</h2>
+						<p><code>VCS</code> là viết tắt của<code>Version Control System</code>
+							là hệ thống kiểm soát các phiên bản phân tán mã nguồn mở. Các
+							<code>VCS</code> sẽ lưu trữ tất cả các file trong toàn bộ dự án và
+							ghi lại toàn bộ lịch sử thay đổi của file. Mỗi sự thay đổi được lưu
+							lại sẽ được và thành một version (phiên bản).
+						</p>
+						<p><code>VCS</code> nghĩa là hệ thống giúp lập trình viên có thể lưu trữ
+							nhiều phiên bản khác nhau của một mã nguồn được nhân bản
+							(<code>clone</code>) từ một kho chứa mã nguồn
+							(<code>repository</code>), mỗi thay đổi vào mã nguồn trên local sẽ
+							có thể ủy thác (<code>commit</code>) rồi đưa lên server nơi đặt kho
+							chứa chính.</p>
+						<p>Và một máy tính khác nếu họ có quyền truy cập cũng có thể clone lại
+							mã nguồn từ kho chứa hoặc clone lại một tập hợp các thay đổi mới
+							nhất trên máy tính kia.</p>
+						<p>Lập trình viên có thể xem lại danh sách các sự thay đổi của file như
+							xem một dòng thời gian của các phiên bản. Mỗi phiên bản bao gồm: nội
+							dung file bị thay đổi, ngày giờ sửa đổi, người thay đổi là ai, lý do
+							thay đổi hay tên phiên bản…</p>
+						<h2>3. VCS có tác dụng như thế nào?</h2>
+						<ul>
+							<li>Lưu lại lịch sử các version của bất kỳ thay đổi nào của dự án.
+								Giúp xem lại các sự thay đổi hoặc khôi phục
+								(<code>revert</code>) lại sau này.</li>
+							<li>Việc chia sẻ code trở nên dễ dàng hơn, lập trình viên có thể để
+								public cho bất kỳ ai, hoặc private chỉ cho một số người có thẩm
+								quyền có thể truy cập và lấy code về.</li>
+						</ul>
+						<p>Vốn là một VCS nên Git cũng ghi nhớ lại toàn bộ lịch sử thay đổi của
+							source code trong dự án. Lập trình sửa file, thêm dòng code tại đâu,
+							xóa dòng code ở hàng nào…đều được Git ghi nhận và lưu trữ lại.</p>
+						<h2>4. Git hoạt động như thế nào?</h2>
+						<p>Sự khác biệt chính giữa Git và bất kỳ VCS nào khác (bao gồm
+							Subversion…) là cách Git nghĩ về dữ liệu của nó.</p>
+						<p>Về mặt khái niệm, hầu hết các hệ thống khác đều lưu trữ thông tin
+							dưới dạng danh sách các thay đổi dựa trên file. Các hệ thống này
+							(CVS, Subversion, Perforce, Bazaar, v.v.) coi thông tin chúng lưu
+							giữ dưới dạng một tập hợp các file và những thay đổi được thực hiện
+							đối với mỗi file theo thời gian.</p>
+						<p><span>
+								<img src="https://images.viblo.asia/d8a21f0f-2e67-4a14-a67f-244b23355377.png" alt="">
+							</span></p>
+						<p>Git không nghĩ đến hoặc lưu trữ dữ liệu của mình theo cách này. Thay
+							vào đó, Git coi thông tin được lưu trữ là một tập hợp các snapshot –
+							ảnh chụp toàn bộ nội dung tất cả các file tại thời điểm.</p>
+						<p>Mỗi khi bạn “commit”, Git sẽ “chụp” và tạo ra một snapshot cùng một
+							tham chiếu tới snapshot đó. Để hiệu quả, nếu các tệp không thay đổi,
+							Git sẽ không lưu trữ lại file — chỉ là một liên kết đến tệp giống
+							file trước đó mà nó đã lưu trữ. Git nghĩ về dữ liệu của nó giống như
+							dưới đây:</p>
+						<p><span> <img src="https://images.viblo.asia/d0237fda-0b0e-44ba-b4ff-0026d366c826.png"
+									alt=""></span></p>
+						<p>Đây là điểm khác biệt quan trọng giữa Git và gần như tất cả các VCS
+							khác. Nó khiến Git phải xem xét lại hầu hết mọi khía cạnh của kiểm
+							soát phiên bản mà hầu hết các hệ thống khác đã sao chép từ thế hệ
+							trước. Điều này làm cho Git giống như một hệ thống tệp nhỏ với một
+							số công cụ cực kỳ mạnh mẽ được xây dựng trên nó, thay vì chỉ đơn
+							giản là một VCS.</p>
+						<h2>5. Git có lợi ích gì?</h2>
+						<p>Các dự án thực tế thường có nhiều lập trình viên làm việc song song.
+							Vì vậy, một hệ thống kiểm soát phiên bản như Git là cần thiết để đảm
+							bảo không có xung đột code giữa các lập trình viên.</p>
+						<p>Ngoài ra, các yêu cầu trong các dự án như vậy thay đổi thường xuyên.
+							Vì vậy, một hệ thống kiểm soát phiên bản cho phép các nhà phát triển
+							revert và quay lại phiên bản cũ hơn của code.</p>
+						<p>Cuối cùng, đôi khi một số dự án đang được chạy song song liên quan
+							đến cùng một cơ sở code. Trong trường hợp như vậy, khái niệm phân
+							nhánh trong Git là rất quan trọng.</p>
+						<ul>
+							<li>Dễ sử dụng, thao tác nhanh, gọn, lẹ và rất an toàn.</li>
+							<li>Dễ dàng kết hợp các phân nhánh (branch), có thể giúp quy trình
+								làm việc code theo nhóm đơn giản hơn rất nhiều.</li>
+							<li>Chỉ cần clone mã nguồn từ kho chứa hoặc clone một phiên bản thay
+								đổi nào đó từ kho chứa, hoặc một nhánh nào đó từ kho chứa là bạn
+								có thể làm việc ở mọi lúc mọi nơi.</li>
+							<li>Deployment sản phẩm của bạn một cách không thể nào dễ dàng hơn.
+							</li>
+						</ul>
+						<h1>III. Các thuật ngữ Git quan trọng:</h1>
+						<h2>1. Branch:</h2>
+						<p>Các Branch (<code>nhánh</code>) đại diện cho các phiên bản cụ thể của
+							một kho lưu trữ tách ra từ project chính của bạn.</p>
+						<p>Branch cho phép bạn theo dõi các thay đổi thử nghiệm bạn thực hiện
+							đối với kho lưu trữ và có thể hoàn nguyên về các phiên bản cũ hơn.
+						</p>
+						<h2>2. Commit</h2>
+						<p>Một commit đại diện cho một thời điểm cụ thể trong lịch sử dự án của
+							bạn. Sử dụng lệnh commit kết hợp với lệnh git add để cho git biết
+							những thay đổi bạn muốn lưu vào local repository.</p>
+						<h2>3. Checkout</h2>
+						<p>Sử dụng lệnh git checkout để chuyển giữa các branch.</p>
+						<h2>4. Fetch</h2>
+						<p>Lệnh git fetch tìm nạp các bản sao và tải xuống tất cả các tệp branch
+							vào máy tính của bạn. Sử dụng nó để lưu các thay đổi mới nhất vào
+							kho lưu trữ của bạn. Nó có thể tìm nạp nhiều branch cùng một lúc.
+						</p>
+						<h2>5. Fork</h2>
+						<p>Một fork là một bản sao của một kho lưu trữ
+							(<code>repository</code>). Các lập trình viên thường tận dụng lợi
+							ích của fork để thử nghiệm các thay đổi mà không ảnh hưởng đến dự án
+							chính.</p>
+						<h2>6. Head</h2>
+						<p>Các commit ở đầu của một branch được gọi là head. Nó đại diện cho
+							commit mới nhất của repository mà bạn hiện đang làm việc.</p>
+						<h2>7. Index</h2>
+						<p>Bất cứ khi nào bạn thêm, xóa hoặc thay đổi một file, nó vẫn nằm trong
+							chỉ mục cho đến khi bạn sẵn sàng commit các thay đổi. Nó như là khu
+							vực tổ chức (<code>stagging area</code>) cho Git. Sử dụng lệnh git
+							status để xem nội dung của index của bạn.</p>
+						<h2>8. Master</h2>
+						<p>Master là nhánh chính của tất cả các repository của bạn. Nó nên bao
+							gồm những thay đổi và commit gần đây nhất.</p>
+						<h2>9. Merge</h2>
+						<p>Lệnh git merge kết hợp với các yêu cầu kéo
+							(<code>pull requests</code>) để thêm các thay đổi từ nhánh này sang
+							nhánh khác.</p>
+						<h2>10. Origin</h2>
+						<p>Origin là phiên bản mặc định của repository. Origin cũng đóng vai trò
+							là bí danh hệ thống để liên lạc với nhánh chính.</p>
+						<p>Lệnh git push origin master để đẩy các thay đổi cục bộ đến nhánh
+							chính.</p>
+						<h2>11. Pull</h2>
+						<p>Pull requests thể hiện các đề xuất thay đổi cho nhánh chính. Nếu bạn
+							làm việc với một nhóm, bạn có thể tạo các pull request để yêu cầu
+							người bảo trì kho lưu trữ xem xét các thay đổi và hợp nhất chúng.
+						</p>
+						<p>Lệnh git pull được sử dụng để thêm các thay đổi vào nhánh chính.</p>
+						<h2>12. Push</h2>
+						<p>Lệnh git push được sử dụng để cập nhật các nhánh từ xa với những thay
+							đổi mới nhất mà bạn đã commit.</p>
+						<h2>13. Rebase</h2>
+						<p>Lệnh git rebase cho phép bạn phân tách, di chuyển hoặc thoát khỏi các
+							commit. Nó cũng có thể được sử dụng để kết hợp hai nhánh khác nhau.
+						</p>
+						<h2>14. Remote</h2>
+						<p>Một Remote (kho lưu trữ từ xa) là một bản sao của một chi nhánh.
+							Remote giao tiếp ngược dòng với nhánh gốc (origin branch) của chúng
+							và các Remote khác trong kho lưu trữ.</p>
+						<h2>15. Repository</h2>
+						<p>Kho lưu trữ Git chứa tất cả các tệp dự án của bạn bao gồm các branch,
+							tags và commit.</p>
+						<h2>16. Stash</h2>
+						<p>Lệnh git stash sẽ loại bỏ các thay đổi khỏi chỉ mục của bạn và xóa
+							stashes chúng đi sau.</p>
+						<p>Nó có ích nếu bạn muốn tạm dừng những gì bạn đang làm và làm việc
+							khác trong một khoảng thời gian. Bạn không thể đặt stash nhiều hơn
+							một bộ thay đổi ở cùng một thời điểm.</p>
+						<h2>17. Upstream</h2>
+						<p>Trong ngữ cảnh của Git, upstream đề cập đến nơi bạn push các thay đổi
+							của mình, thường là nhánh chính (master branch).</p>
+						<p>các bạn có thể tìm hiểu thêm các khai niệm kháccủa git <a href="https://git-scm.com/docs"
+								target="_blank">tại đây</a></p>
+						<h1>IV. Các lệnh git cơ bản:</h1>
+						<h2>1. git config</h2>
+						<p>Tác dụng : Để set user name và email của bạn trong main configuration
+							file.</p>
+						<p>Cách xài :
+							Để kiểm tra tên và kiểu email trong cấu hình
+							dùng<code>git config -- global user.name</code> và
+							<code>git config -- global user.email</code>.
+						</p>
+						<p>Để set email hoặc tên
+							mới<code>git config -- global user.name = “&lt;your user name&gt;”</code>
+							và git
+							<code>config -- global user.email = “&lt;your email&gt;”</code>
+						</p>
+						<h2>2. git init</h2>
+						<p>Tác dụng : Khởi tạo 1 git repository 1 project mới hoặc đã có.</p>
+						<p>Cách xài: <code>git init</code> trong thư mục gốc của dự án.</p>
+						<h2>3. git clone</h2>
+						<p>Tác dụng: Copy 1 git repository từ remote source.</p>
+						<p>Cách xài:<code>git clone &lt;:clone git url:&gt;</code></p>
+						<h2>4. git status</h2>
+						<p>Tác dụng: Để kiểm tra trạng thái của những file bạn đã thay đổi trong
+							thư mục làm việc.
+							VD: Tất cả các thay đổi cuối cùng từ lần commit cuối cùng.</p>
+						<p>Cách xài:<code>git status</code> trong thư mục làm việc.</p>
+						<h2>5. git add</h2>
+						<p>Tác dụng: Thêm thay đổi đến stage/index trong thư mục làm việc.</p>
+						<p>Cách xài:</p>
+						<ul>
+							<li>add 1 file: <code>git add &lt;file&gt;</code> ,</li>
+							<li>add 1 thư mục <code>git add &lt;directory&gt;</code></li>
+							<li>add tất cả thay đổi <code>git add .</code></li>
+						</ul>
+						<h2>6. git commit</h2>
+						<p>Tác dụng: commit nghĩa là một action để Git lưu lại một snapshot của
+							các sự thay đổi trong thư mục làm việc. Và các tập tin, thư mục được
+							thay đổi đã phải nằm trong Staging Area. Mỗi lần commit nó sẽ được
+							lưu lại lịch sử chỉnh sửa của code kèm theo tên và địa chỉ email của
+							người commit. Ngoài ra trong Git bạn cũng có thể khôi phục lại tập
+							tin trong lịch sử commit của nó để chia cho một branch khác, vì vậy
+							bạn sẽ dễ dàng khôi phục lại các thay đổi trước đó.</p>
+						<p>cách dùng: <code>git commit -m ”&lt;your message&gt;”</code></p>
+						<h2>7. git push/git pull</h2>
+						<p>Tác dụng: Push hoặc Pull các thay đổi đến remote. Nếu bạn đã added và
+							committed các thay đổi và bạn muốn đẩy nó lên hoặc remote của bạn đã
+							update và bạn apply tất cả thay đổi đó trên code của mình.</p>
+						<p>Cách dùng: <code>git pull &lt;remote&gt; &lt;branch&gt;</code> and
+							<code>git push &lt;remote&gt; &lt;branch&gt;</code>
+						</p>
+						<h2>8. git branch</h2>
+						<p>Tác dụng: liệt kê tất cả các branch (nhánh).</p>
+						<p>cách dùng: <code>git branch</code> hoặc<code>git branch -a</code></p>
+						<h2>9. git checkout</h2>
+						<p>Tác dụng: Chuyển sang branch khác</p>
+						<p>Cách dùng: <code>git checkout &lt;branch&gt;</code>
+							hoặc<code>git checkout -b &lt;branch&gt;</code> nếu bạn muốn tạo và
+							chuyển sang một chi nhánh mới.</p>
+						<h2>10. git stash</h2>
+						<p>Tác dụng: Lưu thay đổi mà bạn không muốn commit ngay lập tức.</p>
+						<p>cách dùng: <code>git stash</code> trong thư mục làm việc của bạn.</p>
+						<h2>11. git merge</h2>
+						<p>Tác dụng: Merge 2 branch lại với nhau.</p>
+						<p>Cách dùng: Chuyển tới branch bạn muốn merge rồi dùng
+							<code>git merge &lt;branch_ban_muon_merge&gt;</code>
+						</p>
+						<h2>12. git reset</h2>
+						<p>Tác dụng: Bạn đã đưa một tập tin nào đó vào Staging Area nhưng bây
+							giờ bạn muốn loại bỏ nó ra khỏi đây để không phải bị commit theo.
+						</p>
+						<p>cách dùng: <code>git reset HEAD tên_file</code></p>
+						<h2>13. git remote</h2>
+						<p>Tác dụng: Để check remote/source bạn có hoặc add thêm remote</p>
+						<p>Cách dùng: <code>git remote</code> để kiểm tra và liệt kê.
+							Và<code>git remote add &lt;remote_url&gt;</code> để thêm.</p>
+						<p>ngoài ra các bạn cũng có thể tham khảo các lệnh khác trong git <a
+								href="https://gitsheet.wtf/" target="_blank">tại đây</a></p>
+						<h1>Kết:</h1>
+						<p>Vừa rồi mình đã chia sẽ kiến thức tổng quát về git và cách thức dùng
+							các lệnh git cơ bản.
+							Hi vọng thông qua bài viết này các bạn có thể nắm rỏ hơn các kiến
+							thức về git và có thể sử dụng git để quản lý mã nguồn của minh một
+							cách hiệu quả.</p>
+						<p>tài liệu tham khảo:</p>
+						<ul>
+							<li><a href="https://gitsheet.wtf/" target="_blank">https://gitsheet.wtf/</a></li>
+							<li><a href="https://git-scm.com/docs" target="_blank">https://git-scm.com/docs</a></li>
+							<li><a href="https://mindmajix.com/git-tutorial"
+									target="_blank">https://mindmajix.com/git-tutorial</a></li>
+							<li><a href="https://rogerdudler.github.io/git-guide/"
+									target="_blank">https://rogerdudler.github.io/git-guide/</a>
+							</li>
+						</ul>
+					</div>
+					<!---->
+				</div>
+
+
+				<!--/ Post Content-->
+
+			</div>
+
+
+			<!--Subscribe-->
+			<div class="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
+				<h2 class="font-bold break-normal text-2xl md:text-4xl">Subscribe to Minimal Blog</h2>
+				<h3 class="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">Get the latest posts
+					delivered right to your inbox</h3>
+				<div class="w-full text-center pt-4">
+					<form action="#">
+						<div class="max-w-sm mx-auto p-1 pr-0 flex flex-wrap items-center">
+							<input type="email" placeholder="youremail@example.com"
+								class="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none">
+							<button type="submit"
+								class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400">Subscribe</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- /Subscribe-->
+
+
+			<!--Author-->
+			<div class="flex w-full items-center font-sans p-8 md:p-24">
+				<img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+				<div class="flex-1">
+					<p class="text-base font-bold text-base md:text-xl leading-none">Minimal Blog</p>
+					<p class="text-gray-600 text-xs md:text-base">Tailwind CSS version of Ghost's Casper theme by <a
+							class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
+							href="https://www.tailwindtoolbox.com">TailwindToolbox.com</a></p>
+				</div>
+				<div class="justify-end">
+					<button
+						class="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">Read
+						More</button>
+				</div>
+			</div>
+			<!--/Author-->
+
+		</div>
+
+
+	</div>
+
+
+
+
+	<div class="bg-gray-200">
+
+		<div class="container w-full max-w-6xl mx-auto px-2 py-8">
+			<div class="flex flex-wrap -mx-2">
+				<div class="w-full md:w-1/3 px-2 pb-12">
+					<div class="h-full bg-white rounded overflow-hidden shadow-md hover:shadow-lg relative smooth">
+						<a href="#" class="no-underline hover:no-underline">
+							<img src="https://source.unsplash.com/_AjqGGafofE/400x200"
+								class="h-48 w-full rounded-t shadow-lg">
+							<div class="p-6 h-auto md:h-48">
+								<p class="text-gray-600 text-xs md:text-sm">GETTING STARTED</p>
+								<div class="font-bold text-xl text-gray-900">Lorem ipsum dolor sit amet.</div>
+								<p class="text-gray-800 font-serif text-base mb-5">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc
+									commodo posuere et sit amet ligula.
+								</p>
+							</div>
+							<div class="flex items-center justify-between inset-x-0 bottom-0 p-6">
+								<img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300"
+									alt="Avatar of Author">
+								<p class="text-gray-600 text-xs md:text-sm">2 MIN READ</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="w-full md:w-1/3 px-2 pb-12">
+					<div class="h-full bg-white rounded overflow-hidden shadow-md hover:shadow-lg relative smooth">
+						<a href="#" class="no-underline hover:no-underline">
+							<img src="https://source.unsplash.com/_AjqGGafofE/400x200"
+								class="h-48 w-full rounded-t shadow">
+							<div class="p-6 h-auto md:h-48">
+								<p class="text-gray-600 text-xs md:text-sm">UNDERWATER</p>
+								<div class="font-bold text-xl text-gray-900">Biolumini algae diatomeae ecology.</div>
+								<p class="text-gray-800 font-serif text-base mb-5">
+									Lorem ipsum dolor sit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+								</p>
+							</div>
+							<div class="flex items-center justify-between inset-x-0 bottom-0 p-6">
+								<img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300"
+									alt="Avatar of Author">
+								<p class="text-gray-600 text-xs md:text-sm">4 MIN READ</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="w-full md:w-1/3 px-2 pb-12">
+					<div class="h-full bg-white rounded overflow-hidden shadow-md hover:shadow-lg relative smooth">
+						<a href="#" class="no-underline hover:no-underline">
+							<img src="https://source.unsplash.com/DEa8_vxKlEo/400x200"
+								class="h-48 w-full rounded-t shadow">
+							<div class="p-6 h-auto md:h-48">
+								<p class="text-gray-600 text-xs md:text-sm">FOREST</p>
+								<div class="font-bold text-xl text-gray-900">What is life but a teardrop in the eye of
+									infinity?</div>
+								<p class="text-gray-800 font-serif text-base mb-5">
+									Mollis pretium integer eros et dui orci, lectus nec elit sagittis neque. Dignissim
+									ac nullam semper aliquet volutpat, ut scelerisque.
+								</p>
+							</div>
+							<div class="flex items-center justify-between inset-x-0 bottom-0 p-6">
+								<img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300"
+									alt="Avatar of Author">
+								<p class="text-gray-600 text-xs md:text-sm">7 MIN READ</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<footer class="bg-gray-900">
+		<div class="container max-w-6xl mx-auto flex items-center px-2 py-8">
+
+			<div class="w-full mx-auto flex flex-wrap items-center">
+				<div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+					<a class="text-gray-900 no-underline hover:text-gray-900 hover:no-underline" href="#">
+						👻 <span class="text-base text-gray-200">Minimal Blog</span>
+					</a>
+				</div>
+				<div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+					<ul class="list-reset flex justify-center flex-1 md:flex-none items-center">
+						<li>
+							<a class="inline-block py-2 px-3 text-white no-underline" href="index.html">HOME</a>
+						</li>
+						<li>
+							<a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3"
+								href="#">link</a>
+						</li>
+						<li>
+							<a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3"
+								href="#">link</a>
+						</li>
+						<li>
+							<a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3"
+								href="#">link</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+
+		</div>
+	</footer>
+
+
+	<script>
+		/* Progress bar */
+		//Source: https://alligator.io/js/progress-bar-javascript-css-variables/
+		var h = document.documentElement,
+			b = document.body,
+			st = 'scrollTop',
+			sh = 'scrollHeight',
+			progress = document.querySelector('#progress'),
+			scroll;
+		var scrollpos = window.scrollY;
+		var header = document.getElementById("header");
+
+		document.addEventListener('scroll', function () {
+
+			/*Refresh scroll % width*/
+			scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+			progress.style.setProperty('--scroll', scroll + '%');
+
+			/*Apply classes for slide in bar*/
+			scrollpos = window.scrollY;
+
+			if (scrollpos > 100) {
+				header.classList.remove("hidden");
+				header.classList.remove("fadeOutUp");
+				header.classList.add("slideInDown");
+			}
+			else {
+				header.classList.remove("slideInDown");
+				header.classList.add("fadeOutUp");
+				header.classList.add("hidden");
+			}
+
+		});
+
+	</script>
+
+</body>
+
+</html>
